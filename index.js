@@ -5,7 +5,7 @@ class Telephone {
         if(Telephone.instance) {
             return Telephone.instance;
         } else {
-            this.contacts = new Set();
+            this.phoneNumber = new Set();
             this.observers = [];
             Telephone.instance = this;
         }
@@ -15,20 +15,20 @@ class Telephone {
         if(this.contactExist(phoneNumber)) {
             console.log("Contact already exist");
         }else {
-            this.contacts.add(phoneNumber);
+            this.phoneNumber.add(phoneNumber);
         }
     }
 
     removePhoneNumber(phoneNumber) {
-        if(this.contactExist(phoneNumber)) {
-            this.contacts.delete(phoneNumber);
+        if(this.phoneNumberExist(phoneNumber)) {
+            this.phoneNumber.delete(phoneNumber);
         }else {
             console.log("Contact doesn't exist");
         }
     }
 
     dialPhoneNumber(phoneNumber) {
-        if(this.contactExist(phoneNumber)) {
+        if(this.phoneNumberExist(phoneNumber)) {
             this.notifyObserver(phoneNumber);
         }else {
             console.log("Contact doesn't exist");
@@ -58,7 +58,7 @@ class Telephone {
         });
     }
 
-    contactExist(phoneNumber) {
+    phoneNumberExist(phoneNumber) {
         return this.contacts.has(phoneNumber);
     }
 
@@ -89,9 +89,9 @@ const PhoneNumber = (firstName, lastName, number) => ({
 });
 
 console.log("\nCreating contacts for ransom, dave and gift:");
-const ada = PhoneNumber("Ransom", "Eze", "+2347040060087");
-const jessie = PhoneNumber("Dave", "Eke", "+2348076543210");
-const nzube = PhoneNumber("Gift", "Okoro", "+2348076543210");
+const ransom = PhoneNumber("Ransom", "Eze", "+2347040060087");
+const dave = PhoneNumber("Dave", "Eke", "+2348076543210");
+const gift = PhoneNumber("Gift", "Okoro", "+2348076543210");
 console.log(ransom);
 console.log(dave);
 console.log(gift);
